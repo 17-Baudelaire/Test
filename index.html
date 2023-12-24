@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Time Website</title>
+    <style>
+        #time-display {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function getTimeFromUser() {
+            // Prompt the user for the time input
+            const userTime = prompt("Please enter the current time (HH:mm):");
+
+            // Validate user input
+            if (userTime && /^\d{2}:\d{2}$/.test(userTime)) {
+                // Display the entered time
+                document.getElementById("time-display").innerText = `Current Time: ${userTime}`;
+
+                // Update the time every second
+                setInterval(updateTime, 1000);
+            } else {
+                alert("Invalid time format. Please enter time in HH:mm format.");
+            }
+        }
+
+        function updateTime() {
+            // Update the time in real-time
+            const currentTime = new Date();
+            const formattedTime = `${currentTime.getHours().toString().padStart(2, '0')}:${currentTime.getMinutes().toString().padStart(2, '0')}`;
+
+            document.getElementById("time-display").innerText = `Current Time: ${formattedTime}`;
+        }
+
+        // Call the function to get the time from the user
+        getTimeFromUser();
+    </script>
+
+    <!-- Display the time -->
+    <div id="time-display"></div>
+</body>
+</html>
